@@ -22,9 +22,9 @@ function Card({ auth }: PageProps) {
                             
                             <CardItem 
                             avatar="https://images.pexels.com/photos/3771839/pexels-photo-3771839.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                            name="Kevin Misigaro"
+                            name={auth.user.name}
                             cardNumber="1234-2234-1233"
-                            expiryDate="02-07-2025"
+                            expiryDate="30-07-2025"
                             />
 
                         </div>

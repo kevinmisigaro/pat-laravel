@@ -1,36 +1,49 @@
-import { useEffect, FormEventHandler } from 'react';
-import GuestLayout from '@/Layouts/GuestLayout';
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
-import { Head, Link, useForm } from '@inertiajs/react';
+import { useEffect, FormEventHandler, useState } from "react";
+import GuestLayout from "@/Layouts/GuestLayout";
+import InputError from "@/Components/InputError";
+import InputLabel from "@/Components/InputLabel";
+import PrimaryButton from "@/Components/PrimaryButton";
+import TextInput from "@/Components/TextInput";
+import { Head, Link, useForm } from "@inertiajs/react";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
-        name: '',
-        email: '',
-        password: '',
-        password_confirmation: '',
+        name: "",
+        email: "",
+        password: "",
+        password_confirmation: "",
+        work: "paediatrician",
+        pat: localStorage.getItem("pat"),
     });
+    const [isPATMember, setIsPATMember] = useState<boolean>(
+        localStorage.getItem("pat") == "1" ? true : false
+    );
 
     useEffect(() => {
         return () => {
-            reset('password', 'password_confirmation');
+            reset("password", "password_confirmation");
         };
     }, []);
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
-
-        post(route('register'));
+        post(route("register"));
     };
 
     return (
         <GuestLayout>
-            <Head title="Register" />
+            <Head
+                title={
+                    isPATMember ? "PAT Membership Registration" : "Registration"
+                }
+            />
 
             <form onSubmit={submit}>
+                <div className="text-center mb-12 text-xl">
+                    {isPATMember
+                        ? "Fill in the fields below to complete PAT Membership Registration"
+                        : "Fill in the fields below to register for the PAT Conference"}
+                </div>
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
 
@@ -41,7 +54,7 @@ export default function Register() {
                         className="mt-1 block w-full"
                         autoComplete="name"
                         isFocused={true}
-                        onChange={(e) => setData('name', e.target.value)}
+                        onChange={(e) => setData("name", e.target.value)}
                         required
                     />
 
@@ -58,7 +71,7 @@ export default function Register() {
                         value={data.email}
                         className="mt-1 block w-full"
                         autoComplete="username"
-                        onChange={(e) => setData('email', e.target.value)}
+                        onChange={(e) => setData("email", e.target.value)}
                         required
                     />
 
@@ -66,21 +79,23 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                <label
-                    className="block text-gray-700 text-sm font-bold mb-2"
-                    htmlFor="subscriptionType"
-                >
-                    Work
-                </label>
-                <select
-                    name="subscriptionType"
-                    className="w-full text-gray-700 px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
-                >
-                    <option value="members">Paediatrician</option>
-                    <option value="students">Student</option>
-                    <option value="surgeon">Surgeon</option>
-                    <option value="doctor">Doctor</option>
-                </select>
+                    <label
+                        className="block text-gray-700 text-sm font-bold mb-2"
+                        htmlFor="subscriptionType"
+                    >
+                        Work
+                    </label>
+                    <select
+                        onChange={(e) => setData("work", e.target.value)}
+                        name="subscriptionType"
+                        className="w-full text-gray-700 px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+                    >
+                        <option value="paediatrician">Paediatrician</option>
+                        <option value="student">Student</option>
+                        <option value="surgeon">Surgeon</option>
+                        <option value="doctor">Doctor</option>
+                        <option value="nurse">Doctor</option>
+                    </select>
                 </div>
 
                 <div className="mt-4">
@@ -93,7 +108,7 @@ export default function Register() {
                         value={data.password}
                         className="mt-1 block w-full"
                         autoComplete="new-password"
-                        onChange={(e) => setData('password', e.target.value)}
+                        onChange={(e) => setData("password", e.target.value)}
                         required
                     />
 
@@ -101,7 +116,10 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
+                    <InputLabel
+                        htmlFor="password_confirmation"
+                        value="Confirm Password"
+                    />
 
                     <TextInput
                         id="password_confirmation"
@@ -110,16 +128,21 @@ export default function Register() {
                         value={data.password_confirmation}
                         className="mt-1 block w-full"
                         autoComplete="new-password"
-                        onChange={(e) => setData('password_confirmation', e.target.value)}
+                        onChange={(e) =>
+                            setData("password_confirmation", e.target.value)
+                        }
                         required
                     />
 
-                    <InputError message={errors.password_confirmation} className="mt-2" />
+                    <InputError
+                        message={errors.password_confirmation}
+                        className="mt-2"
+                    />
                 </div>
 
                 <div className="flex items-center justify-end mt-4">
                     <Link
-                        href={route('login')}
+                        href={route("login")}
                         className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
                         Already registered?

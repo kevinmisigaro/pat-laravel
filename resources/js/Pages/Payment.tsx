@@ -20,15 +20,16 @@ function Payment({ auth }: PageProps) {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
                             <div className="mt-10">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque quasi a quis impedit eligendi est esse? In expedita quod delectus tempora cumque, distinctio eum aut architecto. Eaque dolorem id quidem.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque quasi a quis impedit eligendi est esse? In expedita quod delectus tempora cumque, distinctio eum aut architecto. Eaque dolorem id quidem.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque quasi a quis impedit eligendi est esse? In expedita quod delectus tempora cumque, distinctio eum aut architecto. Eaque dolorem id quidem.
-                            <br/><br/>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque quasi a quis impedit eligendi est esse? In expedita quod delectus tempora cumque, distinctio eum aut architecto. Eaque dolorem id quidem?
+                                Please make payments via the following processes below:
                             </div>
 
                             <div className="font-bold my-8 text-xl">
-                                BANK ACCOUNT: 99982342134433
+                                BANK NAME: NBC Bank <br />
+                                BANK BRANCH: Muhimbili branch
+                                <br />
+                                ACCOUNT NAME: PAEDIATRIC ASSOCIATION OF TANZANIA
+                                <br />
+                                BANK ACCOUNT: 041103002213
                             </div>
 
                             <SubscriptionForm />

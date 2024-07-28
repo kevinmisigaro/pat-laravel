@@ -2,7 +2,7 @@ import { Link, Head } from "@inertiajs/react";
 import { PageProps } from "@/types";
 import Countdown from "@/Components/Countdown";
 import InfoCard from "@/Components/InfoCard";
-import { FaLocationDot, FaCalendarDays, FaCheck } from "react-icons/fa6";
+import { FaLocationDot, FaCalendarDays } from "react-icons/fa6";
 
 export default function Welcome({
     auth,
@@ -79,7 +79,7 @@ export default function Welcome({
                             <Countdown targetDate={targetDate} />
                             <div className="my-5">
                                 <a
-                                    href="https://pat-nextjs.vercel.app/"
+                                    href="https://conference2024.paediatrics.or.tz"
                                     target="_blank"
                                     className="text-[#202abd] hover:underline"
                                 >
@@ -90,33 +90,58 @@ export default function Welcome({
 
                         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-y-5 gap-x-10 px-20 items-center">
                             <div className="flex flex-col gap-y-10">
-                            <InfoCard title="Member Registration">
-                                <div className="flex flex-row justify-between">
-                                    <div className="hover:text-[#202abd] hover:underline cursor-pointer">
-                                        Login
-                                    </div>
-                                    <div className="hover:text-[#202abd] hover:underline cursor-pointer">
-                                        Register
-                                    </div>
-                                </div>
-                            </InfoCard>
+                                <InfoCard title="Member Registration">
+                                    <div className="flex flex-row justify-between">
+                                        <Link
+                                          onClick={() =>
+                                            localStorage.setItem("pat", "1")
+                                        }
+                                            href={route("login")}
+                                            className="hover:text-[#202abd] hover:underline"
+                                        >
+                                            Login
+                                        </Link>
 
-                            <InfoCard title="Conference Registeration">
-                                <div className="flex flex-row justify-between">
-                                    <div className="hover:text-[#202abd] hover:underline cursor-pointer">
-                                        Login
+                                        <Link
+                                            onClick={() =>
+                                                localStorage.setItem("pat", "1")
+                                            }
+                                            href={route("register")}
+                                            className="hover:text-[#202abd] hover:underline"
+                                        >
+                                            Register
+                                        </Link>
                                     </div>
-                                    <div className="hover:text-[#202abd] hover:underline cursor-pointer">
-                                        Register
+                                </InfoCard>
+
+                                <InfoCard title="Conference Registeration">
+                                    <div className="flex flex-row justify-between">
+                                        <Link
+                                          onClick={() =>
+                                            localStorage.setItem("pat", "0")
+                                        }
+                                            href={route("login")}
+                                            className="hover:text-[#202abd] hover:underline"
+                                        >
+                                            Login
+                                        </Link>
+
+                                        <Link
+                                            onClick={() =>
+                                                localStorage.setItem("pat", "0")
+                                            }
+                                            href={route("register")}
+                                            className="hover:text-[#202abd] hover:underline"
+                                        >
+                                            Register
+                                        </Link>
                                     </div>
-                                </div>
-                            </InfoCard>
+                                </InfoCard>
                             </div>
-                          
 
                             <div className="flex flex-col gap-y-8 items-center justify-center bg-[#202abd] text-white max-w-fit py-8 px-20">
                                 <div className="basis-1/3 font-bold text-xl">
-                                        Conference details
+                                    Conference details
                                 </div>
                                 <div className="basis-1/3 flex flex-col items-center justify-center">
                                     <FaLocationDot className="text-3xl" />
@@ -139,7 +164,7 @@ export default function Welcome({
                             </div>
 
                             <InfoCard title="Announcements">
-                              <div>No Announcements for now</div>
+                                <div>No Announcements for now</div>
                             </InfoCard>
                         </div>
                     </main>
