@@ -1,6 +1,7 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 import { PageProps } from "@/types";
+import AbstractForm from "@/Components/AbstractForm";
 
 function Abstract({ auth }: PageProps) {
     return (
@@ -19,9 +20,10 @@ function Abstract({ auth }: PageProps) {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
                             <div className="mt-10">
-                               Please submit
+                                Please submit abstract here
                             </div>
 
+                            <AbstractForm />
                         </div>
                     </div>
                 </div>
@@ -30,4 +32,4 @@ function Abstract({ auth }: PageProps) {
     );
 }
 
-export default Abstract
+export default Abstract;

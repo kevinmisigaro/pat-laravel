@@ -51,6 +51,13 @@ export default function Authenticated({
                                 ) : (
                                     ""
                                 )}
+
+                                <NavLink
+                                    href={route("abstract")}
+                                    active={route().current("abstract")}
+                                >
+                                    Abstract
+                                </NavLink>
                             </div>
                         </div>
 

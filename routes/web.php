@@ -22,6 +22,10 @@ Route::get('/payment', function () {
     return Inertia::render('Payment');
 })->middleware(['auth', 'verified'])->name('payment');
 
+Route::get('/abstract', function () {
+    return Inertia::render('Abstract');
+})->middleware(['auth', 'verified'])->name('abstract');
+
 Route::get('/card', function () {
     return Inertia::render('Card');
 })->middleware(['auth', 'verified'])->name('card');
