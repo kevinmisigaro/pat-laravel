@@ -12,12 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('abstracts', function (Blueprint $table) {
+        Schema::create('memberships', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
             $table->foreignIdFor(User::class);
-            $table->string("subtheme");
-            $table->string('media');
+            $table->string("membership_number");
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('abstracts');
+        Schema::dropIfExists('memberships');
     }
 };

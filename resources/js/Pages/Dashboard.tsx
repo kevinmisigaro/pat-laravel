@@ -1,12 +1,16 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
-import { PageProps } from '@/types';
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import { Head } from "@inertiajs/react";
+import { PageProps } from "@/types";
 
 export default function Dashboard({ auth }: PageProps) {
     return (
         <AuthenticatedLayout
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
+            header={
+                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
+                    Dashboard
+                </h2>
+            }
         >
             <Head title="Dashboard" />
 
@@ -16,7 +20,21 @@ export default function Dashboard({ auth }: PageProps) {
                         <div className="p-6 text-gray-900">
                             <div>You're logged in!</div>
 
-                            <div className='mt-10'>You have not yet paid for your application</div>
+                            {auth.user.pat_member == 1 ? (
+                                <div className="mt-10">
+                                    {auth.user.pat_member_confirmation == 1
+                                        ? "Your payment for membership has been confirmed"
+                                        : "You have not yet paid for your membership"}
+                                </div>
+                            ) : (
+                                ""
+                            )}
+
+                            <div className="mt-5">
+                                {auth.user.congress_confirmation == 1
+                                    ? "Your payment for the conference has been confirmed"
+                                    : "You have not yet paid for your conference attendance"}
+                            </div>
                         </div>
                     </div>
                 </div>

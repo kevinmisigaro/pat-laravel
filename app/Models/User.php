@@ -22,7 +22,9 @@ class User extends Authenticatable
         'password',
         'work', 
         'role',
-        'pat_member'
+        'pat_member',
+        'pat_member_confirmation',
+        'congress_confirmation'
     ];
 
     /**

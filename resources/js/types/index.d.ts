@@ -5,6 +5,8 @@ export interface User {
     email_verified_at: string;
     pat_member: number
     confirmed: number
+    pat_member_confirmation: number
+    congress_confirmation: number
 }
 
 export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
