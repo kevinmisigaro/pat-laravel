@@ -14,7 +14,6 @@ class AbstractController extends Controller
         // Validate the request data
         $request->validate([
             'title' => 'required|string|max:255',
-            'coauthor' => 'required|string|max:255',
             'file' => 'required|file|mimes:jpg,png,pdf',
             'subtheme' => 'required|string|max:255'
         ]);
