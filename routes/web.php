@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AbstractController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,8 @@ Route::get('/abstract', function () {
 
 Route::post("/abstract/store", [AbstractController::class, 'store'])->name('abstract.store');
 
+Route::post("/payment/store", [PaymentController::class, 'store'])->name("payment.store");
+
 Route::get('/card', function () {
     return Inertia::render('Card');
 })->middleware(['auth', 'verified'])->name('card');
@@ -39,4 +42,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
