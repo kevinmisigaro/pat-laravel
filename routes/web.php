@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AbstractController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,8 @@ Route::get('/payment', function () {
 Route::get('/abstract', function () {
     return Inertia::render('Abstract');
 })->middleware(['auth', 'verified'])->name('abstract');
+
+Route::post("/abstract/store", [AbstractController::class, 'store'])->name('abstract.store');
 
 Route::get('/card', function () {
     return Inertia::render('Card');
