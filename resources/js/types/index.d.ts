@@ -7,6 +7,8 @@ export interface User {
     confirmed: number
     pat_member_confirmation: number
     congress_confirmation: number
+    role: string
+    work: string
 }
 
 export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {

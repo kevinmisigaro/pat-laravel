@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AbstractController;
+use App\Http\Controllers\ControlController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -27,6 +28,15 @@ Route::get('/payment', function () {
 Route::get('/abstract', function () {
     return Inertia::render('Abstract');
 })->middleware(['auth', 'verified'])->name('abstract');
+
+Route::get('/conferencelist',[ControlController::class, 'index']);
+
+Route::get('/approvals', function() {
+    return Inertia::render('ConferenceApproval');
+})->middleware(['auth', 'verified'])->name('approvals');
+
+Route::get('/approvals/confirmattendance/{id}',[ControlController::class, 'confirmAttendance']);
+
 
 Route::post("/abstract/store", [AbstractController::class, 'store'])->name('abstract.store');
 

@@ -58,6 +58,15 @@ export default function Authenticated({
                                 >
                                     Abstract
                                 </NavLink>
+
+                                {
+                                    user.role == "1" ? <NavLink
+                                    href={route("approvals")}
+                                    active={route().current("approvals")}
+                                >
+                                    Approvals
+                                </NavLink> : ""
+                                }
                             </div>
                         </div>
 
