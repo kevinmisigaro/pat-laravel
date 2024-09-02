@@ -20,8 +20,6 @@ function ConferenceList() {
     };
 
     const confirmConferenceAttendance = async (id: number) => {
-        console.log("ran");
-
         try {
             const responseJson = await fetch(
                 `/approvals/confirmattendance/${id}`
@@ -90,7 +88,10 @@ function ConferenceList() {
             {loading ? (
                 <div>Loading..</div>
             ) : (
-                <DataTable columns={columns} data={list} pagination />
+               <div>
+            <div className="mb-8">Current count: {list.length}</div>
+                 <DataTable columns={columns} data={list} pagination />
+               </div>
             )}
         </div>
     );
