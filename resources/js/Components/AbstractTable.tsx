@@ -92,6 +92,10 @@ function AbstractTable() {
                 moment(row.created_at).format("DD/MM/YYYY"),
         },
         {
+            name: "Co author",
+            selector: (row: Abstract) => row.coauthor
+        },
+        {
             name: "Download",
             cell: (row: Abstract) => (
                 <div
