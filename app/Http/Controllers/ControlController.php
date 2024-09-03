@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Abstracts;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -20,5 +21,11 @@ class ControlController extends Controller
         ]);
 
         return response()->json('Success', 200);
+    }
+
+    public function abstractList(){
+        $list = Abstracts::with('user')->get();
+
+        return response()->json($list,200);
     }
 }

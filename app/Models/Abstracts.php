@@ -14,4 +14,8 @@ class Abstracts extends Model
     protected $fillable = [
         'title', 'subtheme', 'media', 'user_id', 'coauthor'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

@@ -29,13 +29,19 @@ Route::get('/abstract', function () {
     return Inertia::render('Abstract');
 })->middleware(['auth', 'verified'])->name('abstract');
 
-Route::get('/conferencelist',[ControlController::class, 'index']);
+Route::get('/conferencelist', [ControlController::class, 'index']);
 
-Route::get('/approvals', function() {
+Route::get('/approvals', function () {
     return Inertia::render('ConferenceApproval');
 })->middleware(['auth', 'verified'])->name('approvals');
 
-Route::get('/approvals/confirmattendance/{id}',[ControlController::class, 'confirmAttendance']);
+Route::get('/approvals/confirmattendance/{id}', [ControlController::class, 'confirmAttendance']);
+
+Route::get('/abstractlist', function () {
+    return Inertia::render('AbstractList');
+})->middleware(['auth', 'verified'])->name('abstractlist');
+
+Route::get('/listofabstracts', [ControlController::class, 'abstractList']);
 
 
 Route::post("/abstract/store", [AbstractController::class, 'store'])->name('abstract.store');
