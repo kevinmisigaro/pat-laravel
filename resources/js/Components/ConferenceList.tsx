@@ -6,12 +6,34 @@ import _ from "lodash";
 function ConferenceList() {
     const [loading, setLoading] = useState<boolean>(true);
     const [list, setList] = useState<User[]>([]);
+
+    const [search, setSearch] = useState("");
+    const [filteredData, setFilteredData] = useState<User[]>(list);
+
+    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const searchTerm = event.target.value.toLowerCase();
+        setSearch(searchTerm);
+
+        const filtered = list.filter(
+            (item) =>
+                item.name.toLowerCase().includes(searchTerm) ||
+                item.email.toLowerCase().includes(searchTerm)
+        );
+
+        if (searchTerm == "") {
+            setFilteredData(list);
+        } else {
+            setFilteredData(filtered);
+        }
+    };
+
     const fetchData = async () => {
         setLoading(true);
         try {
             const response_json = await fetch("/conferencelist");
             const response = await response_json.json();
             setList(response);
+            setFilteredData(response);
             setLoading(false);
         } catch (error) {
             console.log(error);
@@ -88,10 +110,23 @@ function ConferenceList() {
             {loading ? (
                 <div>Loading..</div>
             ) : (
-               <div>
-            <div className="mb-8">Current count: {list.length}</div>
-                 <DataTable columns={columns} data={list} pagination />
-               </div>
+                <div>
+                    <div className="flex flex-row justify-between items-center mb-8">
+                        <div>Current count: {list.length}</div>
+                        <input
+                            type="text"
+                            placeholder="Search by name or email..."
+                            value={search}
+                            onChange={handleSearch}
+                            className="p-2 border border-gray-300 rounded w-[20vw]"
+                        />
+                    </div>
+                    <DataTable
+                        columns={columns}
+                        data={filteredData}
+                        pagination
+                    />
+                </div>
             )}
         </div>
     );

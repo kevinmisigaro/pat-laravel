@@ -6,12 +6,14 @@ import DataTable from "react-data-table-component";
 function AbstractTable() {
     const [loading, setLoading] = useState<boolean>(true);
     const [list, setList] = useState<Abstract[]>([]);
+
     const fetchData = async () => {
         setLoading(true);
         try {
             const response_json = await fetch("/listofabstracts");
             const response = await response_json.json();
             setList(response);
+            setFilteredData(response);
             setLoading(false);
         } catch (error) {
             console.log(error);
@@ -36,7 +38,25 @@ function AbstractTable() {
         }
     };
 
-    // utils/downloadFile.ts
+    const [search, setSearch] = useState("");
+    const [filteredData, setFilteredData] = useState<Abstract[]>(list);
+
+    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const searchTerm = event.target.value.toLowerCase();
+        setSearch(searchTerm);
+
+        const filtered = list.filter(
+            (item) =>
+                item.title.toLowerCase().includes(searchTerm) ||
+                item.user.name.toLowerCase().includes(searchTerm)
+        );
+
+        if (searchTerm == "") {
+            setFilteredData(list);
+        } else {
+            setFilteredData(filtered);
+        }
+    };
 
     const downloadFile = async (url: string, filename: string) => {
         try {
@@ -80,16 +100,17 @@ function AbstractTable() {
     const columns = [
         {
             name: "Title",
+            sortable: true,
             selector: (row: Abstract) => row.title,
         },
         {
             name: "Sub theme",
+            sortable: true,
             cell: (row: Abstract) => renderSubTheme(row.subtheme),
         },
         {
-            name: "Submission date",
-            selector: (row: Abstract) =>
-                moment(row.created_at).format("DD/MM/YYYY"),
+            name: "Author",
+            selector: (row: Abstract) => row.user.name,
         },
         {
             name: "Download",
@@ -103,8 +124,10 @@ function AbstractTable() {
             ),
         },
         {
-            name: "Co author",
-            selector: (row: Abstract) => row.coauthor
+            name: "Submission date",
+            sortable: true,
+            selector: (row: Abstract) =>
+                moment(row.created_at).format("DD/MM/YYYY"),
         },
     ];
 
@@ -118,8 +141,21 @@ function AbstractTable() {
                 <div>Loading..</div>
             ) : (
                 <div>
-                    <div className="mb-8">Current count: {list.length}</div>
-                    <DataTable columns={columns} data={list} pagination />
+                    <div className="flex flex-row justify-between items-center mb-8">
+                        <div>Current count: {list.length}</div>
+                        <input
+                            type="text"
+                            placeholder="Search by title or author..."
+                            value={search}
+                            onChange={handleSearch}
+                            className="p-2 border border-gray-300 rounded mb-3 w-[20vw]"
+                        />
+                    </div>
+                    <DataTable
+                        columns={columns}
+                        data={filteredData}
+                        pagination
+                    />
                 </div>
             )}
         </div>
