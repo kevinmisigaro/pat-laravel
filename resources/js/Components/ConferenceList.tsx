@@ -60,14 +60,17 @@ function ConferenceList() {
     const columns = [
         {
             name: "Name",
+            sortable: true,
             selector: (row: User) => row.name,
         },
         {
             name: "Email",
+            sortable: true,
             selector: (row: User) => row.email,
         },
         {
             name: "Work",
+            sortable: true,
             selector: (row: User) => _.capitalize(row.work),
         },
         {
