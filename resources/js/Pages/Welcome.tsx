@@ -93,9 +93,9 @@ export default function Welcome({
                                 <InfoCard title="Member Registration">
                                     <div className="flex flex-row justify-between">
                                         <Link
-                                          onClick={() =>
-                                            localStorage.setItem("pat", "1")
-                                        }
+                                            onClick={() =>
+                                                localStorage.setItem("pat", "1")
+                                            }
                                             href={route("login")}
                                             className="hover:text-[#202abd] hover:underline"
                                         >
@@ -117,9 +117,9 @@ export default function Welcome({
                                 <InfoCard title="Conference Registeration">
                                     <div className="flex flex-row justify-between">
                                         <Link
-                                          onClick={() =>
-                                            localStorage.setItem("pat", "0")
-                                        }
+                                            onClick={() =>
+                                                localStorage.setItem("pat", "0")
+                                            }
                                             href={route("login")}
                                             className="hover:text-[#202abd] hover:underline"
                                         >
@@ -162,6 +162,14 @@ export default function Welcome({
                                     <div className="text-base">Event date</div>
                                 </div>
                             </div>
+
+                            <InfoCard title="Abstract Submission">
+                                <div>
+                                    <Link className="hover:underline" href={route("guestabstract")}>
+                                        Submit New Abstract
+                                    </Link>
+                                </div>
+                            </InfoCard>
 
                             <InfoCard title="Announcements">
                                 <div>No Announcements for now</div>

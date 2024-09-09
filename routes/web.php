@@ -29,6 +29,12 @@ Route::get('/abstract', function () {
     return Inertia::render('Abstract');
 })->middleware(['auth', 'verified'])->name('abstract');
 
+Route::get("/guestabstract", function(){
+    return Inertia::render("GuestAbstract");
+})->name('guestabstract');
+
+Route::post("/abstract/guest/store", [AbstractController::class, 'guestStore'])->name('abstract.guest.store');
+
 Route::get('/conferencelist', [ControlController::class, 'index']);
 
 Route::get('/approvals', function () {
@@ -42,7 +48,6 @@ Route::get('/abstractlist', function () {
 })->middleware(['auth', 'verified'])->name('abstractlist');
 
 Route::get('/listofabstracts', [ControlController::class, 'abstractList']);
-
 
 Route::post("/abstract/store", [AbstractController::class, 'store'])->name('abstract.store');
 
