@@ -31,7 +31,7 @@ class ControlController extends Controller
     }
 
     public function resetPassword(Request $request){
-        $user = User::where('id', $request->email)->first();
+        $user = User::where('email', $request->email)->first();
         $user->update([
             'password' => Hash::make($request->password)
         ]);
