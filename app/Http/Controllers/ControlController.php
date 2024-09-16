@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Abstracts;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ControlController extends Controller
 {
@@ -27,5 +28,14 @@ class ControlController extends Controller
         $list = Abstracts::with('user')->get();
 
         return response()->json($list,200);
+    }
+
+    public function resetPassword(Request $request){
+        $user = User::where('id', $request->email)->first();
+        $user->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return response()->json('Success', 200);
     }
 }

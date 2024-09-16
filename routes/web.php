@@ -33,6 +33,8 @@ Route::get("/guestabstract", function(){
     return Inertia::render("GuestAbstract");
 })->name('guestabstract');
 
+Route::post("/resetpassword", [ControlController::class, 'resetPassword'])->name('resetpassword');
+
 Route::post("/abstract/guest/store", [AbstractController::class, 'guestStore'])->name('abstract.guest.store');
 
 Route::get('/conferencelist', [ControlController::class, 'index']);
