@@ -94,7 +94,9 @@ export default function Register() {
                         <option value="student">Student</option>
                         <option value="surgeon">Surgeon</option>
                         <option value="doctor">Doctor</option>
-                        <option value="nurse">Doctor</option>
+                        <option value="nurse">Nurse</option>
+                        <option value="delegate">Delegate</option>
+                        <option value="other">Other</option>
                     </select>
                 </div>
 
